@@ -1,4 +1,0 @@
-services:
-#    champloo_site.example:
-#        class: Champloo\SiteBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

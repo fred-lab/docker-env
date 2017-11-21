@@ -1,6 +1,0 @@
-# router pour la page de demande de changement de mot de passe utilisateur
-
-fos_user_change_password:
-    path: /changer_mot_passe
-    defaults: { _controller: FOSUserBundle:ChangePassword:changePassword }
-    methods: [GET, POST]

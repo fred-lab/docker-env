@@ -1,9 +1,0 @@
-{# src/Champloo/CommentaireBundle/Resources/views/form.html.twig #}
-
-<form method="post" action="{{path('champloo_commentaire_ajouter', {'id': article.id}) }}">
-	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-	{{ form_widget(form) }}
-	{{ form_errors(form.contenu) }}
-	{{ form_end(form) }}
-	<input type="submit" value="Ajouter" class="btn btn-primary"/>
-</form>
