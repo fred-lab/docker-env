@@ -1,0 +1,24 @@
+{# src/Champloo/CommentaireBundle/Resources/views/supprimerCommentaire.html.twig #}
+
+{% extends "ChamplooSiteBundle::layout.html.twig" %}
+
+{% block champloo_site_bundle_homepage_index %}
+<h2>Editer un commentaire</h2>
+
+		{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+		{{ form_widget(form) }}
+		{{ form_end(form) }}
+
+  <p>
+
+    <a href="{{ path('champloo_site_article_lire', {'article_slug': commentaire.article.slug}) }}" class="btn btn-default">
+
+      <i class="glyphicon glyphicon-chevron-left"></i>
+
+      Retour à l'article
+
+    </a>
+
+  </p>
+
+{% endblock %}

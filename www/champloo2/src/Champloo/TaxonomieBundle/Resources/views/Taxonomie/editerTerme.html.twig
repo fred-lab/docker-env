@@ -1,0 +1,25 @@
+{# src/Champloo/TaxonomieBundle/Resources/views/Taxonomie/editerTerme.html.twig #}
+
+{% extends "ChamplooSiteBundle::layout.html.twig" %}
+
+{% block champloo_site_bundle_homepage_index %}
+
+
+{% if terme.niveau == 0 %}
+	<h3>Editer un vocabulaire</h3>
+{% else %}
+	<h3>Editer un terme</h3>
+{% endif %}
+
+<form method="post" action="{{path('champloo_taxonomie_editer', {'terme_slug' : terme.slug}) }}">
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+	{{ form_widget(form) }}
+	{{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
+	<a href="{{ path ('champloo_taxonomie_index') }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+			Retour à l'index des taxonomies
+	{{ form_end(form) }}
+	</a>
+</form>
+
+{% endblock %}

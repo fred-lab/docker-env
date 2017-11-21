@@ -1,0 +1,9 @@
+{# src/Champloo/TaxonomieBundle/Resources/views/Taxonomie/form.html.twig #}
+
+		{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+		{{ form_widget(form) }}
+		{{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
+		<a href="{{ path ('champloo_taxonomie_index') }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Retour à l'index des taxonomies</a>
+		{{ form_end(form) }}

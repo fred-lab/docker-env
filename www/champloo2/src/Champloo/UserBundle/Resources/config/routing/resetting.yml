@@ -1,0 +1,21 @@
+# router pour les pages de réinitialisation du mot de passe utilisateur
+fos_user_resetting_request:
+    path: /reset_demande
+    defaults: { _controller: FOSUserBundle:Resetting:request }
+    methods: [GET]
+
+
+fos_user_resetting_send_email:
+    path: /envoi_email
+    defaults: { _controller: FOSUserBundle:Resetting:sendEmail }
+    methods: [POST]
+
+fos_user_resetting_check_email:
+    path: /verif_email
+    defaults: { _controller: FOSUserBundle:Resetting:checkEmail }
+    methods: [GET]
+
+fos_user_resetting_reset:
+    path: /reset/{token}
+    defaults: { _controller: FOSUserBundle:Resetting:reset }
+    methods: [GET, POST]

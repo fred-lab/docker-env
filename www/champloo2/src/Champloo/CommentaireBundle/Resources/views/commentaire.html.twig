@@ -1,0 +1,40 @@
+{# src/Champloo/CommentaireBundle/Resources/views/commentaire.html.twig #}
+
+<h3>Poster un nouveau commentaire</h3>
+	{% for commentaire in article.commentaires %}
+		<div id="commentaire.id">
+			{# le filtre "default" permet d'indiquer une valeur par défaut à une variable, utile quand l'utilisateur n'est pas log #}
+			{% if is_granted('ROLE_MODERATEUR') or app.user.username|default('Variable non défini') == commentaire.auteur %}
+				<div class="pull-right">
+					<a href="{{ path('champloo_commentaire_supprimer', {'id' : commentaire.id }) }}" class="btn">	
+						<i class="icon-chevron-left"></i>
+						Supprimer
+					</a>
+						<a href="{{ path('champloo_commentaire_editer', {'id' : commentaire.id }) }}" class="btn">	
+						<i class="icon-chevron-left"></i>
+						Editer
+					</a>
+				</div>
+			{% endif %}
+
+			<em>
+				Le {{ commentaire.datecreation|date("d/m/y H:i") }}, {{ commentaire.auteur }} a écrit :
+			</em>
+			<br />
+			{{ commentaire.contenu }}
+		</div>
+	<hr />
+	{% else %}
+		<p>Pas encore de commentaire</p>
+	{% endfor %}
+
+<h3>Poster un commentaire</h3>
+{# message flash #}
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{ label }}">
+            {{ flash }}
+        </div>
+    {% endfor %}
+{% endfor %}
+	{{render (controller('ChamplooCommentaireBundle:Commentaire:formCommentaire', {'id': article.id}))}}

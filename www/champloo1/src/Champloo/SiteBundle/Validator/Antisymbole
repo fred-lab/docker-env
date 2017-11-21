@@ -1,0 +1,16 @@
+<?php
+// src/Champloo/SiteBundle/Validator/Antisymbole.php
+
+namespace Champloo\SiteBundle\Validator;
+
+use Symfony\Component\Validator\Constraint;
+
+/**
+ * @Annotation
+ */
+class Antisymbole extends Constraint
+{
+  public $messageA = "Le titre doit contenir au moins 3 lettres.";
+  public $messageB = "Ce titre contient trop de symbole.";
+  public $messageC = "Le titre ne peut pas contenir ces symboles.";
+}

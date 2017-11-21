@@ -1,0 +1,10 @@
+# router pour la page profil
+fos_user_profile_show:
+    path: /profil/{username}
+    defaults: { _controller: FOSUserBundle:Profile:show }
+    methods: [GET]
+
+fos_user_profile_edit:
+    path: /profil/{username}/edition
+    defaults: { _controller: FOSUserBundle:Profile:edit }
+    methods: [GET, POST]

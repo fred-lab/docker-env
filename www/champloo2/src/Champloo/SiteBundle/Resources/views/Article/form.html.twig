@@ -1,0 +1,85 @@
+{# src/Champloo/SiteBundle/Resources/views/Article/form.html.twig #}
+
+
+<h3>création d'article</h3>
+
+
+<div class="well">
+
+  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+
+    {# Les erreurs générales du formulaire. #}
+
+    {{ form_errors(form) }}
+
+
+    <div class="form-group">
+
+      {# Génération du label. #}
+
+      {{ form_label(form.titre, "Titre de l'article", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+
+      {# Affichage des erreurs pour ce champ précis. #}
+
+      {{ form_errors(form.titre) }}
+
+
+      <div class="col-sm-4">
+
+        {# Génération de l'input. #}
+
+        {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+
+      </div>
+
+    </div>
+
+
+    {# Idem pour un autre champ. #}
+
+    <div class="form-group">
+
+      {{ form_label(form.contenu, "Contenu de l'article", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+
+      {{ form_errors(form.contenu) }}
+
+      <div class="col-sm-4">
+
+        {{ form_widget(form.contenu, {'attr': {'class': 'form-control'}}) }}
+
+      </div>
+
+    </div>
+
+
+  {# Génération du label + error + widget pour un champ #}
+
+  {# {{ form_row(form.datecreation) }} #}
+
+ 
+  {# {{ form_row(form.published) }} #}
+
+
+
+
+
+  {# Génération automatique des champs pas encore écrits.
+
+     Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+
+     et tous les champs cachés (type « hidden »). #}
+
+  {{ form_rest(form) }}
+
+    {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+
+  {{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
+
+  {# Fermeture de la balise <form> du formulaire HTML #}
+
+  {{ form_end(form) }}
+
+</div>

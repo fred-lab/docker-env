@@ -1,0 +1,81 @@
+/*  *************************************************************
+// ========================== BASE =============================
+// *************************************************************
+// 
+// CSS correspondant aux éléments HTML basiques incluant des 
+// sélecteurs descendants, enfants... déterminant la taille, la
+// couleur, la mise en page de ces éléments
+// 
+// Par exemple, les balises titres, paragraphe (H1, em, body...)
+// 
+// Ne contient ni classe, ni identifiant, ni !important
+// 
+// Peut inclure des reset CSS */
+
+/* Général */
+html {
+font-size: 62.5%; //équivalent à 10px soit 1em = 10px
+}
+
+/* masquer les éléments */
+.hidden {display: none;}
+
+/* Import de la police d'icon champloo (icomoon) */
+@font-face {
+	font-family: 'champloo-icon';
+	src:url('fonts/champloo-icon.eot?2g9zpt');
+	src:url('fonts/champloo-icon.eot?2g9zpt#iefix') format('embedded-opentype'),
+		url('fonts/champloo-icon.ttf?2g9zpt') format('truetype'),
+		url('fonts/champloo-icon.woff?2g9zpt') format('woff'),
+		url('fonts/champloo-icon.svg?2g9zpt#champloo-icon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Gestion de la police d'icone Champloo-icon */
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'champloo-icon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-search:before {
+	content: "\e800";
+}
+.icon-google-plus:before {
+	content: "\e600";
+}
+.icon-facebook:before {
+	content: "\e601";
+}
+.icon-twitter:before {
+	content: "\e602";
+}
+.icon-feed:before {
+	content: "\e603";
+}
+.icon-youtube:before {
+	content: "\e604";
+}
+.icon-vimeo:before {
+	content: "\e605";
+}
+.icon-flickr:before {
+	content: "\e606";
+}
+.icon-search2:before {
+	content: "\e801";
+}
+
+/* région header */
+
+
+

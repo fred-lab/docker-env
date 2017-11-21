@@ -1,0 +1,18 @@
+{# src/Champloo/SiteBundle/Resources/views/Categorie/editerCategorie.html.twig #}
+
+{% extends "ChamplooSiteBundle::layout.html.twig" %}
+
+{% block champloo_site_bundle_homepage_index %}
+
+	<h3>Editer une catégorie</h3>
+	<form method="post" action="{{path('champloo_site_categorie_editer', {'categorie_slug' : categorie.slug}) }}">
+		{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+		{{ form_widget(form) }}
+		{{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
+		<a href="{{ path ('champloo_site_categorie_index') }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Retour à l'index des catégories
+		{{ form_end(form) }}
+	</form>
+
+{% endblock %}

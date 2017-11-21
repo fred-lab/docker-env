@@ -1,0 +1,12 @@
+** Liste des choses à faire **
+- valider les données des entitées : commentaire (fait)
+- valider les données des entitées : article (fait)
+- valider les données des entitées : terme
+- quand Tag dans entité article sera disponible, mettre @Assert/Notblank
+- valider les données des entitées : catégorie et sous catégorie. Bundle Catégorie remplacé par le bunde Terme, penser à virer CatégorieBundle.
+- faire voter pour le bundle commentaire (fait, service "securityCheck"
+- faire les opérations de cascade pour les différentes entitées (persist, remove)
+- améliorer la regex de smartlink (ne prend pas en compte les pluriels) voir moteur de regex.
+
+
+@ChamplooAssert\Antisymbole()

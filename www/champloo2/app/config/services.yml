@@ -1,0 +1,31 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+   article_voter:
+       class: Champloo\SiteBundle\Security\ArticleVoter
+       public: false
+       tags:
+           - { name: security.voter }
+
+   commentaire_voter:
+       class: Champloo\CommentaireBundle\Security\Voter\CommentaireVoter
+       public: false
+       tags:
+           - { name: security.voter }
+
+   app_security_check:
+       class: AppBundle\Services\SecurityCheck
+       arguments: ['@security.token_storage', '@security.authorization_checker', '@request_stack']
+
+
+   app_last_route_event_listener:
+       class: AppBundle\EventListener\LastRouteListener      
+       tags:
+        - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 30 }
+
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

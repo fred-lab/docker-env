@@ -1,0 +1,4 @@
+services:
+#    champloo_taxonomie.example:
+#        class: Champloo\TaxonomieBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

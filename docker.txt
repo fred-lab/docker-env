@@ -1,0 +1,45 @@
+Docker
+
+1 - Les commandes utiles
+
+docker-compose up -d => permet de démarrage, en tâche de fond, docker en fonction de la "recette" dans docker-compose.yml
+docker-compose up => lance docker au 1er plan, pour "couper" faire ctrl+c
+
+docker-compose ps => permet de voir l'état des services (Up = en cours, Exit = éteint)
+
+docker-compose stop => permet d'éteindre docker.
+
+docker-compose restart => redémarre tout les services.
+
+docker-compose rm => retire les containers éteint, à faire en cas de soucis
+
+docker-compose build => permet de créer les containers en fonction d'un dockerfile. A faire à chaque modif' d'un dockerfile.
+
+
+docker images => permet de voir toutes les images télécharger
+
+docker inspect images_name où images_name = le nom de l'image, permet de voir les caractéristiques complètes de l'image.
+
+docker rm container_id => supprime un container, remplacer container_id par les 3 premiers caractères du numéro du container id
+docker rmi image_id => supprime une image, mettre les 3 premiers caractères Image_Id (mettre -f avant le id pour forcer)
+
+docker rm $(docker ps -a -q) => supprime tout les containers
+docker rmi $(docker images -q) => supprime toutes les images
+
+docker build nom => construit un containt en fonction d'un Dockerfile, remplacer "nom" par le "path" (nom du dockerfile 'FROM' (exemple php))
+
+
+2 - Ping un container lié
+
+Faire un docker ps pour connaitre le NAME du container (par exemple docker_nginx_1)
+
+Faire :  docker exec -ti NAME /bin/bash  où NAME = docker_nginx_1 par exemple
+
+A l'intérieur du nouveau terminal (l'adresse passe à root@.....), faire ping alias où alias correspond à celui noté dans le docker-compose.yml dans la section link (par exemple: ping php)
+Pour stopper le ping, faire ctrl+c
+
+Pour voir les variables d'environnement, taper : printenv
+
+Pour sortir du terminal interne au container, faire exit
+
+

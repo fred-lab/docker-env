@@ -1,0 +1,23 @@
+{# src/Champloo/SiteBundle/Resources/views/Article/supprimer.html.twig #}
+
+{% extends "ChamplooSiteBundle::layout.html.twig" %}
+
+{% block champloo_site_bundle_homepage_index %}
+
+	<h2>Supprimer un article</h2>
+
+	<p>
+	Êtes-vous certains de vouloir supprimer l'article "{{ article.titre }}" ?
+	</p>
+
+	<form action="{{ path('champloo_site_article_supprimer', {'article_slug': article.slug} )}}" method="post"> 
+		<a href="{{ path ('champloo_site_article_lire', {'article_slug': article.slug}) }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-chevron-left"></i>
+			Retour à l'annonce
+		</a>
+		<input type="submit"value="supprimer" class="btn btn-danger" />
+
+		{{ form_rest(form) }}
+	</form>
+
+{% endblock %}

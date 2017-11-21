@@ -1,0 +1,44 @@
+/* *************************************************************
+// ======================== MODULE =============================
+// *************************************************************
+// 
+// CSS correspondant à chaque section mineures (menu de navigation
+// formulaire de connexion, bouton....)
+*/
+
+/* Région Header */
+/* 
+/* couleur blanche, retrait soulignement, pour tout les liens du header */
+/* retrait symbole liste à puce des menus header */
+/* alignement horizontalement les menus du header */
+header {
+	& a {color: white; text-decoration: none}
+	& ul {list-style-type: none; } 
+	& li {  display: inline-block;} 
+}
+
+/* police de la région header */
+header {font-family: BakerSignet BT, Century Gothic; }
+
+
+/* taille des boutons et de la police menu contact */
+#menu-contact li {
+    width: 8em;
+    font-size: 1.5em;
+} 
+
+/* taille de la police du nom de site */
+#site-name a {font-size: 4em;}
+
+/* Menu social */
+/* alignement, centrage et taille des boutons & police, effet fin de transition */
+#menu-social a {
+	display: inline-block; 
+	width: 1.5em; 
+	height :1.5em;
+	line-height: 1.5em; 
+	text-align :center; 
+	font-size: 2em;
+	.transition;
+}
+

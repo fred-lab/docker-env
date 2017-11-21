@@ -1,0 +1,23 @@
+<?php
+// src/Champloo/SiteBundle/Validator/Antisymbole.php
+
+namespace Champloo\SiteBundle\Validator;
+
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidator;
+
+class AntisymboleValidator extends ConstraintValidator
+{
+	public function validate($value, Constraint $constraint)
+	{
+		if (!preg_match('/[a-zA-Z]{3,}/', $value, $matches)) {
+			$this->context->addViolation($constraint->messageA);
+        }
+        elseif (!preg_match('/[-&é(-è_çà@)°/*+`^£$%ù<>?,.;:!€]{10,}/', $value, $matches)) {
+        	$this->context->addViolation($constraint->messageB);
+        }
+		elseif (!preg_match('/[§~[\]{}|£¤²]/', $value, $matches)) {
+        	$this->context->addViolation($constraint->messageC);
+		}
+	}
+}

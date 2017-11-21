@@ -1,0 +1,68 @@
+Symfony 2
+
+Fonction Basique :
+
+Création d'une base de donnée, se connecter à : xxx/web/app_dev.php/_configurator/ et remplir les champs. Les infos seront stockés dans : app/config/parameters.yml Si besoin, on peut éditer les infos dans ce fichier
+il faut que l'utilisateur soit créer dans PHPmyadmin, sinon message d'erreur dans la console "1045 access denied".
+- commande console : php app/console doctrine:database -> donne la liste des commandes
+					 php app/console doctrine:database:create -> créer la base de donnée avec le même nom d'utisateur
+					 php app/console doctrine:database:drop --force -> supprime la base de donnée ayant le nom de l'utisateur
+					 php app/console doctrine:schema:update --force -> mettre à jour les nouvelles tables
+
+Création d'utilisateur à partir de FOSUserBundle :
+
+- php app/console fos:user:create -> créer un utilisateur (suivre les champs nom, email, password)
+
+- php app/console fos:user:promote username ROLE_xx -> donne un rôle à un utilisateur, où username correspond au pseudo et ROLE_xx correspond au role à attribuer (voir liste dans app/config/security.yml)
+
+- - php app/console fos:user:demote username ROLE_xx -> retire un rôle à un utilisateur, où username correspond au pseudo et ROLE_xx correspond au role à attribuer (voir liste dans app/config/security.yml)
+
+Liste des commandes ici : http://symfony.com/doc/current/bundles/FOSUserBundle/command_line_tools.html
+
+**************************************
+Routing
+
+Dans le cas d'un import :
+
+champloo_site: 
+    resource: "@ChamplooSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+La première n'est pas importante et est donné à titre indicatif, la seule contrainte est que ce nom soit unique.
+
+Voir l'ensemble des routes : php app/console debug:router
+
+**************************************
+Gestion utilisateur :
+
+- le firewall gère l'authentification, si l'utilisateur est enregistré ou pas
+- l'access control gère l'autorisation, donc les droits en fonction des classes d'utilisateur. Il agit après le firewall.
+
+Firewall :
+- Les firewalls s'adressent aux providers pour récupérer les utilisateurs et les identifier.
+
+**************************************
+Doctrine
+
+- Interroger la base sql :
+php app/console doctrine:query:sql "SELECT * FROM nom_table" -> cette commande va afficher toutes les valeurs de la table. Si la table est propriétaire de la relation (Many) le champs "owner_id" donne l'id du propriétaire. Par exemple, si le "FROM" était fait sur la table "Commentaire", le owner_id serait "Article_id" avec l'id de l'article possédant ce commentaire.
+
+- Vérifier les relations entre table
+php app/console doctrine:mapping:info
+L'option --em= sert à préciser l'entity manager
+
+- Relation entre entité :
+L'entité propriétaire est celle du côté Many et dans une relation bi-directionnelle, celle qui a la fonction "inversedBy". Sa table contiendra la colonne "xx_id"
+L'entité inverse est dans une relation bi-directionnelle, celle qui a la fonction "mappedBy"
+Dans une relation bi-directionnelle, les "mappedBy" et "inversedBy" pointent vers un attribut de l'entitée opposé. Le côté Many doit être au pluriel.
+
+
+**************************************
+Validator
+
+Les contraintes de validation : http://symfony.com/doc/2.7/reference/constraints.html
+En général, indiquer si le champs est unique, le type de champs, sa taille mini et maxi, ne soit pas un string vide.
+
+* @Assert\Valid() : lorsque l'on a 2 objet avec une relation, cela permet à l'objet B d'être valider suivant ses propres règles.
+
+Callback : une fonction "callback" est une fonction s'insérant dans une autre fonction. Ici utilisé pour valider un élément suivant une méthode.

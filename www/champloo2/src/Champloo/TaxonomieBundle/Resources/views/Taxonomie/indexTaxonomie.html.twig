@@ -1,0 +1,99 @@
+{# src/Champloo/TaxonomieBundle/Resources/views/Taxonomie/indexTaxonomie.html.twig #}
+
+{% extends "ChamplooSiteBundle::layout.html.twig" %}
+
+{% block champloo_site_bundle_homepage_index %}
+
+<h1>Taxonomie</h1>
+	<p>
+		Système de taxonomie : sert à classer le contenue du site en fonction de champs lexicaux, appelé "vocabulaire". Ces vocabulaires sont décomposés en "terme", correspondant chacun à un mot du champ lexical et sont classés sous forme d'arborescence.
+	</p>
+
+<h1>Arborescence</h1>
+
+{# {% for terme in termes %}
+	{% if terme.niveau == 0 %}
+		<li>
+			{{ terme.title }} 
+				{% if is_granted('ROLE_ADMIN') %}
+					<a href="{{ path('champloo_taxonomie_terme_ajouter', {'terme_slug' : terme.slug }) }}" class="btn">	
+						Ajouter un enfant
+					</a>
+				{% endif %}
+			{% if terme.enfant %}
+				<ul>
+					{% for terme in terme.enfant %}
+						<li>
+							{{ terme.title }} 
+								{% if is_granted('ROLE_ADMIN') %}
+									<a href="{{ path('champloo_taxonomie_terme_ajouter', {'terme_slug' : terme.slug }) }}" class="btn">	
+										Ajouter un enfant
+									</a>
+								{% endif %}
+						</li>							
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</li>
+	{% endif %}
+{% endfor %} #}
+
+<a href="{{ path('champloo_taxonomie_vocabulaire_ajouter') }}">Ajouter un vocabulaire</a>
+
+{% macro child(terme) %}
+    {% import _self as macros %}
+    	{% if terme.enfant %}
+				<ul>
+					{% for terme in terme.enfant %}
+						<li>
+							{{ terme.title }} 
+								{% if is_granted('ROLE_ADMIN') %}
+									<a href="{{ path('champloo_taxonomie_terme_ajouter', {'terme_slug' : terme.slug }) }}" class="btn">	
+										Ajouter un enfant
+									</a>
+									<a href="{{ path('champloo_taxonomie_editer', {'terme_slug' : terme.slug}) }}" class="btn">	
+										<i class="icon-chevron-left"></i>
+										Editer
+									</a>
+									<a href="{{ path('champloo_taxonomie_supprimer', {'terme_slug' : terme.slug}) }}" class="btn">	
+										<i class="icon-chevron-left"></i>
+										Supprimer
+									</a>
+								{% endif %}
+								<ul>
+									{{ macros.child(terme) }}
+								</ul>
+						</li>							
+					{% endfor %}
+				</ul>
+			{% endif %}
+{% endmacro %}
+
+{% import _self as macros %}
+
+
+
+{% for terme in termes %}
+	{% if terme.niveau == 0 %}
+		<li>
+			{{ terme.title }} 
+				{% if is_granted('ROLE_ADMIN') %}
+					<a href="{{ path('champloo_taxonomie_terme_ajouter', {'terme_slug' : terme.slug }) }}" class="btn">	
+						Ajouter un enfant
+					</a>
+					<a href="{{ path('champloo_taxonomie_editer', {'terme_slug' : terme.slug}) }}" class="btn">	
+						<i class="icon-chevron-left"></i>
+						Editer
+					</a>
+					<a href="{{ path('champloo_taxonomie_supprimer', {'terme_slug' : terme.slug}) }}" class="btn">	
+						<i class="icon-chevron-left"></i>
+						Supprimer
+					</a>
+				{% endif %}
+			{{ macros.child(terme) }}			
+		</li>
+	{% endif %}
+{% endfor %}
+
+{% endblock %}
+

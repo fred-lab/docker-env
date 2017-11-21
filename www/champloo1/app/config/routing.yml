@@ -1,0 +1,26 @@
+champloo_taxonomie:
+    resource: "@ChamplooTaxonomieBundle/Resources/config/routing.yml"
+    prefix:   /
+
+champloo_commentaire:
+    resource: "@ChamplooCommentaireBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# router pour les pages du site
+champloo_site:
+    resource: "@ChamplooSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# router pour les pages utilsateurs
+champloo_userbundle:
+    resource: "@ChamplooUserBundle/Resources/config/routing/user_all.yml"
+
+# router pour les commentaires du site
+champloo_commentaire:
+    resource: "@ChamplooCommentaireBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# router pour les taxonomies du site
+champloo_taxonomie:
+    resource: "@ChamplooTaxonomieBundle/Resources/config/routing.yml"
+    prefix:   /

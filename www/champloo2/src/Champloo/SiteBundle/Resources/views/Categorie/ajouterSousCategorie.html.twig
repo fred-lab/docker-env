@@ -1,0 +1,18 @@
+{# src/Champloo/SiteBundle/Resources/views/Categorie/ajouterSousCategorie.html.twig #}
+
+{% extends "ChamplooSiteBundle::layout.html.twig" %}
+
+{% block champloo_site_bundle_homepage_index %}
+
+	<h3>Ajouter une sous-catégorie à une catégorie</h3>
+	<form method="post" action="{{path('champloo_site_sous_categorie_ajouter') }}">
+		{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+		{{ form_widget(form) }}
+		{{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
+		<a href="{{ path ('champloo_site_categorie_index') }}" class="btn btn-default">
+		<i class="glyphicon glyphicon-chevron-left"></i>
+		Retour à l'index des catégories
+		{{ form_end(form) }}
+	</form>
+
+{% endblock %}

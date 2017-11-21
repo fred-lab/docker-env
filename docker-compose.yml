@@ -1,0 +1,80 @@
+version: '2'
+services:
+
+ db:
+  image: mysql
+  # restart: always
+  ports:
+   - "3306:3306"
+  volumes:
+   - ./mysql:/var/lib/mysql
+  environment:
+   - MYSQL_ROOT_PASSWORD=root
+   - MYSQL_DATABASE=champlooxyfred
+   - MYSQL_USER=root
+   - MYSQL_PASSWORD=root
+ 
+ phpmyadmin:
+  image: phpmyadmin/phpmyadmin
+  # restart: always
+  environment:
+   - PMA_HOSTS=db
+  ports:
+   - "8080:80"
+  links:
+   - db:db
+
+ redis:
+  image: redis:latest
+  # restart: always
+  ports:
+   - "6379:6379"
+  volumes:
+   - ./redis:/usr/local/etc/redis/
+   - ./redis/data:/data
+
+ php7:
+  build: ./php7
+  # restart: always
+  ports:
+     - "9000:9000"
+     - "10000:10000"
+  volumes:
+   - ./php7:/usr/local/etc/php
+  volumes_from:
+   - www
+  links:
+   - db:db
+   - redis:redis
+
+ nginx:
+  build: ./nginx
+  # restart: always
+  ports:
+   - "80:80"
+  volumes: 
+   - ./nginx:/etc/nginx/conf.d
+   - ./nginx/log:/var/log/nginx
+   - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+  volumes_from:
+   - www
+  links:
+   - php7:php7
+
+ maildev:
+  image: djfarrelly/maildev
+  # restart: always
+  ports:
+   - "1080:80"
+
+ www:
+  build: ./www
+  # restart: always
+  volumes:
+   - ./www:/var/www/
+  links:
+   - db:db
+   - redis:redis
+   - maildev:maildev
+  network_mode: "host"
+

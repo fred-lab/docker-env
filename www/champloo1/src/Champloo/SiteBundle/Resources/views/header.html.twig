@@ -1,0 +1,46 @@
+<header id= "header" role="banner">
+	<div id="logo">
+		<a href="#">
+		<img src="{{asset ('css/image/logo_champloo.png')}}" alt="Logo Champloo" title="accueil">
+		</a>
+	</div><!--logo du site-->
+
+	<nav id="menu-contact" role="navigation">
+		<ul>
+			<li><a href="#">A propos</a></li>
+			<li><a href="#">Contact</a></li>
+			<li><a href="#">Newsletter</a></li>
+		</ul>	<!-- menu des contacts et newsletter	 -->
+	</nav>
+
+	<div id="site-name">
+		<a href="#"><h1>Champloo</h1></a>				
+	</div><!-- affiche le nom du site -->
+
+	<div id="espace-membre">
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+			<a href="{{ path('logout') }}">
+			{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+			</a>
+		{% else %}
+			<a href="{{ path('login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+		{% endif %}
+	</div> <!-- zone espace membre	 -->
+
+	<nav id="menu-social" role="navigation">
+		<ul>
+			<li> <a class="icon-facebook" href="https://www.facebook.com/champloo.fr" target="_blank" title="Facebook" rel="nofollow"><span class="hidden">Suivez-nous sur Facebook</span></a></li>
+			<li> <a class="icon-google-plus" href="#" target="_blank" title="Google+"><span class="hidden">Suivez-nous sur Google+</span></a></li>
+			<li> <a class="icon-twitter" href="https://twitter.com/ChamplooFr" target="_blank" title="Twitter" rel="nofollow"><span class="hidden">Suivez-nous sur Twitter</span></a></li>
+			<li> <a class="icon-youtube" href="#" target="_blank" title="Youtube" rel="nofollow"><span class="hidden">Nos vidéos sur Youtube</span></a></li>
+			<li> <a class="icon-vimeo" href="https://vimeo.com/channels/champlootv/" target="_blank" title="Vimeo" rel="nofollow"><span class="hidden">Nos vidéos sur Vimeo</span></a></li>
+			<li> <a class="icon-flickr" href="https://www.flickr.com/groups/champloofr/" target="_blank" title="Flickr" rel="nofollow"><span class="hidden">Notre groupe photo sur Flickr</span></a></li>
+			<li> <a class="icon-feed" href="/rss.xml" target="_blank" title="Fluss RSS"><span class="hidden">Fluss RSS</span></a></li>
+		</ul>	<!-- menu social	 -->
+	</nav>
+
+	<nav id="navbar" role="navigation">
+		
+	</nav>	
+</header>
